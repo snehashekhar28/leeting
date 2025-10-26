@@ -1,31 +1,21 @@
 class Solution {
     func lengthOfLongestSubstring(_ s: String) -> Int {
-        var pointer = 0
+        //sliding window
+        var charTable: [Character: Int] = [:]
+        let sArray = Array(s)
+        var leftPtr = 0
         var maxLength = 0
-        let chars = Array(s) // safe integer indexing
+        var length = 0
 
-        while pointer < chars.count {
-            var length = 0
-            var setChar: Set<Character> = []
-
-            setChar.insert(chars[pointer])
-            length += 1
-            if maxLength < length {
-                maxLength = length
-            }
-
-            var point2 = pointer
-            while point2 + 1 < chars.count && setChar.insert(chars[point2 + 1]).inserted {
-                length += 1
-                if maxLength < length {
-                    maxLength = length
-                }
-                point2 += 1
-            } // end inner while
-
-            pointer += 1
-        } // end outer while
-
+        for (rightPtr, ch) in sArray.enumerated(){
+            if charTable[ch] != nil && charTable[ch]! >= leftPtr {
+                leftPtr = charTable[ch]! + 1
+                length = rightPtr - leftPtr
+            } 
+            charTable[ch] = rightPtr
+            length+=1
+            maxLength = max(maxLength, length)
+        }
         return maxLength
     }
 }
