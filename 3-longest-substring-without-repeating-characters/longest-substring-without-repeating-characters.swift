@@ -10,11 +10,9 @@ class Solution {
         for (rightPtr, ch) in sArray.enumerated(){
             if charTable[ch] != nil && charTable[ch]! >= leftPtr {
                 leftPtr = charTable[ch]! + 1
-                length = rightPtr - leftPtr
             } 
             charTable[ch] = rightPtr
-            length+=1
-            maxLength = max(maxLength, length)
+            maxLength = max(maxLength, rightPtr - leftPtr + 1)
         }
         return maxLength
     }
