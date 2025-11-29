@@ -1,15 +1,13 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        //SUB-OPTIMAL: nested for loop
-        //two pointer approach = works best when sorted
-        //hash map! 2:7
-                //  7:2
-        HashMap<Integer,Integer> twoMap = new HashMap <Integer,Integer>();
-        for(int i = 0; i < nums.length; i++){
-            if(twoMap.containsKey(target - nums[i])){
-                return new int[] {twoMap.get(target-nums[i]), i};
-            }
-            twoMap.put(nums[i], i);
+        //return index of the two numbers that add up to the target
+        //make hashmap -> # : index
+
+        Map<Integer, Integer> numMap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (!numMap.containsKey(target-nums[i])){
+                numMap.put(nums[i],i);
+            } else return new int[] {numMap.get(target-nums[i]), i};
         }
         return new int[] {-1,-1};
     }
