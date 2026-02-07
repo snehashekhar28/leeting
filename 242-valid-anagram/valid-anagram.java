@@ -3,11 +3,11 @@ class Solution {
         //sort both -> see if they are the same.
         //make hashmap to keep track of the counts of each letter
             //make an array
-        
+        if(s.length() != t.length()) return false;
         int[] letterCounter = new int[512];
         char[] sArr = s.toCharArray();
         char[] tArr = t.toCharArray();
-
+        
         for(char l: sArr){
             System.out.println(l);
             letterCounter[l]++;
@@ -15,9 +15,6 @@ class Solution {
         for(char l: tArr){
             letterCounter[l]--;
             if(letterCounter[l] < 0) return false;
-        }
-        for(int l: letterCounter){
-            if (l != 0) return false;
         }
         return true;
     }
