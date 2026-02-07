@@ -1,13 +1,15 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        //return index of the two numbers that add up to the target
-        //make hashmap -> # : index
-
-        Map<Integer, Integer> numMap = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            if (!numMap.containsKey(target-nums[i])){
-                numMap.put(nums[i],i);
-            } else return new int[] {numMap.get(target-nums[i]), i};
+        //store both index & value 
+            //goal: linear time. 
+                //two-pointer approach
+                //hashmap **
+        Map<Integer, Integer> numsDict = new HashMap<>();
+        for(int i = 0; i < nums.length; i++){
+            Integer ans = numsDict.get(target-nums[i]);
+            if(ans != null)
+                return new int[] {ans, i};
+            numsDict.put(nums[i], i);
         }
         return new int[] {-1,-1};
     }
