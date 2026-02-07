@@ -17,7 +17,6 @@ class Solution {
             if(letterCounter[l] < 0) return false;
         }
         for(int l: letterCounter){
-            System.out.println(l + ":" + letterCounter[l]);
             if (l != 0) return false;
         }
         return true;
