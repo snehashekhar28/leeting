@@ -27,9 +27,9 @@ class Solution {
                 i--;
                 continue;
             }
-            sb.insert(0, s.charAt(i));
+            sb.append(s.charAt(i));
             i--;
         }
-        return sb.toString();
+        return sb.reverse().toString();
     }
 }
