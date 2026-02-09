@@ -11,9 +11,7 @@ class Solution {
         for(String word: strs){
             char[] wordArr = word.toCharArray();
             Arrays.sort(wordArr);
-            System.out.println("1" + wordArr);
             String wordStr = new String(wordArr);
-            System.out.println("2" + wordStr);
             List<String> group = anagramGroup.get(wordStr);
             if(group == null){
                 group = new ArrayList<>();
@@ -21,11 +19,7 @@ class Solution {
             group.add(word);
             anagramGroup.put(wordStr,group);
         }
-        List<List<String>> out = new ArrayList<>();
-        for(String anList : anagramGroup.keySet()){
-            out.add(anagramGroup.get(anList));
-        }
 
-        return out;
+        return new ArrayList<> (anagramGroup.values());
     }
 }
