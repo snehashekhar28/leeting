@@ -1,25 +1,20 @@
 class Solution {
     public int compress(char[] chars) {
-        //keep the original array
-        int l = 0;
-        int currCount = 0;
-        int currPos = 0;
-
-        for(int r = 0; r <= chars.length; r++){
-            if(r == chars.length || chars[r] != chars[l]){
-                currCount = r - l;
-                //if(r == chars.length - 1) currCount++;
-                chars[currPos] = chars[l];
-                if(currCount > 1){
-                    char[] count = String.valueOf(currCount).toCharArray();
-                    for(int j = 0; j < count.length; j++){
-                        chars[++currPos] = count[j];
+        int charsIdx = 0;
+        int startIdx = 0;
+        for(int i = 0; i <= chars.length; i++){
+            if(i == chars.length || chars[startIdx] != chars[i]){
+                chars[charsIdx++] = chars[startIdx];
+                if(i-startIdx > 1){
+                    int diff = i - startIdx;
+                    String numString = String.valueOf(diff);
+                    for(char numChar : numString.toCharArray()){
+                        chars[charsIdx++] = numChar;
                     }
                 }
-                currPos++;
-                l = r;
+                startIdx = i;
             }
         }
-        return currPos;
+        return charsIdx;
     }
 }
