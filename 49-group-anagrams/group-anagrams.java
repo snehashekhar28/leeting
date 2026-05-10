@@ -1,25 +1,18 @@
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-        //return everything together that are made up of same core letters
-        //use hashmap to track core letters?
-        // 'nat' -> ['a','n','t']
-        // 'tan' -> ['a','n','t']
-        //^^ same, so put in one list...
-
-        // 'ant'/ ['a','n','t'] -> List (tan, nat)
-        Map <String , List<String>> anagramGroup = new HashMap<>();
-        for(String word: strs){
-            char[] wordArr = word.toCharArray();
-            Arrays.sort(wordArr);
-            String wordStr = new String(wordArr);
-            List<String> group = anagramGroup.get(wordStr);
-            if(group == null){
-                group = new ArrayList<>();
+        Map<String, List<String>> mapAna = new HashMap<>();
+        for(String n: strs){
+            char[] srtd = n.toCharArray();
+            Arrays.sort(srtd);
+            String srtdS = new String(srtd);
+            System.out.println(n + " " + srtdS);
+            List<String> p = mapAna.get(srtdS);
+            if (p == null){
+                p = new ArrayList<>();
             }
-            group.add(word);
-            anagramGroup.put(wordStr,group);
+            p.add(n);
+            mapAna.put(srtdS,p);
         }
-
-        return new ArrayList<> (anagramGroup.values());
+        return new ArrayList<>(mapAna.values());
     }
 }
