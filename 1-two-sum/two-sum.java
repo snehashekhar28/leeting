@@ -1,27 +1,20 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        //two pointer method
-        int[] nums2 = new int[nums.length];
+        int[][] trackerArray = new int[nums.length][2];
         for(int i = 0; i < nums.length; i++){
-            nums2[i] = nums[i];
+            trackerArray[i] = new int[]{i, nums[i]};
         }
-        Arrays.sort(nums);
+        Arrays.sort(trackerArray, (a,b) -> Integer.compare(a[1], b[1]));
         int l = 0;
         int r = nums.length - 1;
-        while (r > l && l < nums.length){
-            int add = nums[l] + nums[r];
-            if(add == target){
-                int numL = -1;
-                int numR = -2;
-                for(int i = 0; i < nums.length; i++){
-                    if(nums[l] == nums2[i] && numL == -1) numL = i;
-                    if(nums[r] == nums2[i] && i != numL) numR = i;
-                }
-                return new int[] {numL, numR};
-            }
-            else if(add < target) l++;
-            else  r--;
+        while (r > l){
+            int ans = trackerArray[l][1] + trackerArray[r][1];
+            if(ans == target){
+                return new int[]{trackerArray[l][0], trackerArray[r][0]};
+            } else if (ans > target) r--;
+            else l++;
         }
-        return new int[] {-1,-1};
+        return new int[]{-1,-1};
+
     }
 }
