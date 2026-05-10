@@ -1,15 +1,26 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        //store both index & value 
-            //goal: linear time. 
-                //two-pointer approach
-                //hashmap **
-        Map<Integer, Integer> numsDict = new HashMap<>();
+        //two pointer method
+        int[] nums2 = new int[nums.length];
         for(int i = 0; i < nums.length; i++){
-            Integer ans = numsDict.get(target-nums[i]);
-            if(ans != null)
-                return new int[] {ans, i};
-            numsDict.put(nums[i], i);
+            nums2[i] = nums[i];
+        }
+        Arrays.sort(nums);
+        int l = 0;
+        int r = nums.length - 1;
+        while (r > l && l < nums.length){
+            int add = nums[l] + nums[r];
+            if(add == target){
+                int numL = -1;
+                int numR = -2;
+                for(int i = 0; i < nums.length; i++){
+                    if(nums[l] == nums2[i] && numL == -1) numL = i;
+                    if(nums[r] == nums2[i] && i != numL) numR = i;
+                }
+                return new int[] {numL, numR};
+            }
+            else if(add < target) l++;
+            else  r--;
         }
         return new int[] {-1,-1};
     }
