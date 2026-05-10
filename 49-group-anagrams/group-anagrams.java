@@ -5,7 +5,6 @@ class Solution {
             char[] srtd = n.toCharArray();
             Arrays.sort(srtd);
             String srtdS = new String(srtd);
-            System.out.println(n + " " + srtdS);
             List<String> p = mapAna.get(srtdS);
             if (p == null){
                 p = new ArrayList<>();
