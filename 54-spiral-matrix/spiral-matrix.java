@@ -1,41 +1,45 @@
 class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
+        int top = 0;
+        int left = 0;
+        int right = matrix[0].length - 1;
+        int bottom = matrix.length - 1;
         List<Integer> out = new ArrayList<>();
-        int i = 0, j = 0;
-        while(matrix[i][j] != -200){
-            if(j + 1 < matrix[0].length && matrix[i][j+1] != -200){
-                while(j + 1 < matrix[0].length && matrix[i][j+1] != -200){
-                    out.add(matrix[i][j]);
-                    matrix[i][j] = -200;
-                    j++;
+        int place = 0;
+        while(top <= bottom && left <= right){
+            place = left;
+            while(left <= right){
+                out.add(matrix[top][left]);
+                left++;
+            }
+            left = place;
+            place = ++top;
+            while(top <= bottom){
+                out.add(matrix[top][right]);
+                top++;
+            }
+            top = place;
+            right--;
+
+            if(left <= right && top <= bottom){
+                place = right;
+                while(left <= right){
+                    out.add(matrix[bottom][right]);
+                    right--;
                 }
-            }
-            else if (i + 1 < matrix.length && matrix[i+1][j] != -200){
-                while (i + 1 < matrix.length && matrix[i+1][j] != -200){
-                    out.add(matrix[i][j]);
-                    matrix[i][j] = -200;
-                    i++;
+                right = place;
+                bottom--;
+
+                place = bottom;
+                while(top <= bottom){
+                    out.add(matrix[bottom][left]);
+                    bottom--;
                 }
+                bottom = place;
+                left++;
             }
-            else if(j - 1 >= 0 && matrix[i][j-1] != -200){
-                while (j - 1 >= 0 && matrix[i][j-1] != -200){
-                    out.add(matrix[i][j]);
-                    matrix[i][j] = -200;
-                    j--;
-                }
-            }
-            else if(i - 1 >= 0 && matrix[i-1][j] != -200){
-                while(i - 1 >= 0 && matrix[i-1][j] != -200){
-                    out.add(matrix[i][j]);
-                    matrix[i][j] = -200;
-                    i--;
-                }
-            }
-            else{
-                break;
-            }
+
         }
-        out.add(matrix[i][j]);
         return out;
     }
 }
