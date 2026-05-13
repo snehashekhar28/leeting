@@ -6,7 +6,6 @@ class Solution {
             if(j + 1 < matrix[0].length && matrix[i][j+1] != -200){
                 while(j + 1 < matrix[0].length && matrix[i][j+1] != -200){
                     out.add(matrix[i][j]);
-                    System.out.println(matrix[i][j]);
                     matrix[i][j] = -200;
                     j++;
                 }
@@ -14,7 +13,6 @@ class Solution {
             else if (i + 1 < matrix.length && matrix[i+1][j] != -200){
                 while (i + 1 < matrix.length && matrix[i+1][j] != -200){
                     out.add(matrix[i][j]);
-                    System.out.println(matrix[i][j]);
                     matrix[i][j] = -200;
                     i++;
                 }
@@ -22,7 +20,6 @@ class Solution {
             else if(j - 1 >= 0 && matrix[i][j-1] != -200){
                 while (j - 1 >= 0 && matrix[i][j-1] != -200){
                     out.add(matrix[i][j]);
-                    System.out.println(matrix[i][j]);
                     matrix[i][j] = -200;
                     j--;
                 }
@@ -30,7 +27,6 @@ class Solution {
             else if(i - 1 >= 0 && matrix[i-1][j] != -200){
                 while(i - 1 >= 0 && matrix[i-1][j] != -200){
                     out.add(matrix[i][j]);
-                    System.out.println(matrix[i][j]);
                     matrix[i][j] = -200;
                     i--;
                 }
