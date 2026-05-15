@@ -12,9 +12,6 @@ class Solution {
             }
         }
 
-        for(int i = 0; i < rowZ.length; i++) System.out.println(i + ":" + rowZ[i]);
-        for(int i = 0; i < colZ.length; i++) System.out.println(i + ":" + colZ[i]);
-
         for(int i = 0; i < matrix.length; i++){
             for(int j = 0; j < matrix[0].length; j++){
                 if(rowZ[i] || colZ[j]) matrix[i][j] = 0;
