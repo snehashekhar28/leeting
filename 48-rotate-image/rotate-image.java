@@ -10,7 +10,6 @@ class Solution {
             // System.out.println(n);
             // System.out.println();
             int j = i;
-            System.out.println("i,j,n: " + i + " " + j + " " + n);
             for(; j < n; j++){
                 int p0 = matrix[j][n1-i];
                 int p1 = matrix[n1-i][n1-j];
