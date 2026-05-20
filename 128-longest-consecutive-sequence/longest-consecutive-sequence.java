@@ -6,19 +6,17 @@ class Solution {
         for(int i = 0; i < nums.length; i++){
             numS.add(nums[i]);
         }
-        List<Integer> numL = new ArrayList<>();
-        for(int num: numS){
-            if(!numS.contains(num - 1)) numL.add(num);
-        }
-        for(int i = 0; i < numL.size(); i++){
-            int ct = 1;
-            int toGet = numL.get(i) + 1;
-            while(numS.contains(toGet)){
-                ct++;
-                toGet++;
+        for(int num : numS){
+            int ct = 0;
+            if(!numS.contains(num + 1)){
+                int toGet = num - 1;
+                while(numS.contains(toGet)){
+                    ct++;
+                    toGet--;
+                }
             }
-            if(maxCt < ct) maxCt = ct;
+            if(ct > maxCt) maxCt = ct;
         }
-        return maxCt;
+        return maxCt + 1;
     }
 }
