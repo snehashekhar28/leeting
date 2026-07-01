@@ -4,6 +4,7 @@ class Solution {
         String bestS = "";
         for(int i = 0; i < s.length(); i++){
             for(int j = i + 1; j <= s.length(); j++){
+                if(len > (j - i)) continue;
                 String temp = s.substring(i,j);
                 if(len<(j-i) && isPalindrome(temp)){
                     len = Math.max(len, j-i);
