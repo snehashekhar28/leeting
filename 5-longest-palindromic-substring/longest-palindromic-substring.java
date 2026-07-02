@@ -1,29 +1,29 @@
 class Solution {
     public String longestPalindrome(String s) {
-        int len = 0;
-        String bestS = "";
-        for(int i = 0; i < s.length(); i++){
-            for(int j = i + 1; j <= s.length(); j++){
-                if(len > (j - i)) continue;
-                String temp = s.substring(i,j);
-                if(len<(j-i) && isPalindrome(temp)){
-                    len = Math.max(len, j-i);
-                    bestS = temp;
+        boolean[][] lP = new boolean[s.length()][s.length()];
+        String maxS = "";
+        for(int len = 1; len <= s.length(); len++){
+            for(int i = 0; i <= s.length() - len; i++){
+                int j = i + len - 1;
+                if(j - i == 0){
+                    lP[i][j] = true;
+                    if(maxS.length() < j - i + 1)
+                        maxS = s.substring(i,j + 1);
+                }
+                if(j - i == 1 && s.charAt(i) == s.charAt(j)){
+                    lP[i][j] = true;
+                    if(maxS.length() < j - i + 1)
+                        maxS = s.substring(i,j + 1);
+                }
+                if(j-i >= 2 && s.charAt(i) == s.charAt(j) &&
+                    lP[i+1][j-1]){
+                    lP[i][j] = true;
+                    if(maxS.length() < j - i + 1)
+                        maxS = s.substring(i,j + 1);
                 }
             }
         }
-        return bestS;
-    }
-
-    boolean isPalindrome(String s){
-        int l = 0;
-        int r = s.length() - 1;
-        while(r >= l){
-            if(s.charAt(l) == s.charAt(r)){
-                l++;
-                r--;
-            } else return false;
-        } return true;
+        return maxS;
+        
     }
 }
-
